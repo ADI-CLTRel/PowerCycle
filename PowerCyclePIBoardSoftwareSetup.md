@@ -87,7 +87,7 @@ sudo systemctl enable getty@tty1.service
 ## Step 7: Copy test scripts to Pi board home directory
 1. Test code to verify process works
 ```
-curl -O https://raw.githubusercontent.com/ADI-CLTRel/PowerCycle/refs/heads/main/pyscripts/IP_POC.py
+curl -O https://raw.githubusercontent.com/ADI-CLTRel/PowerCycle/refs/heads/main/pyscripts/cycle_IP.py
 ```
 
 
