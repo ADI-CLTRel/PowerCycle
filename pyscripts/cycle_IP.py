@@ -76,6 +76,7 @@ def is_online(ip): # Define function to check if device is online
 previous_state = False
 
 print ("monitoring...")
+time0 = time.perf_counter()
 
 try:
     while True:
@@ -91,7 +92,15 @@ try:
             GPIO.output(pin,1) 
             time.sleep(1)
             GPIO.output(pin,0)
-            #Stops test at target cycle count
+            
+            #Estimates time to test completion
+            if cycle_count % 25 == 0 and cycle_count != 0: #Update time estimate every 25 cycles and skips count at start
+                time_n = time.perf_counter() - time0
+                avg_cycle_time = time_n / cycle_count
+                cycles_remain = cycle_target - cycle_count
+                est_time_remain = round((avg_cycle_time * cycles_remain) / 3600,2) #calculates time remaining in hours
+                
+                print(f"Estimated time remaining: {est_time_remain} hours")
             
             #Stop after completion of target cycle count
             if cycle_count >= cycle_target:
